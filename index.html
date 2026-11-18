@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MANGANAIQ | Mining Intelligence</title>
+<style>
+:root{--bg:#f4f7f5;--panel:#fff;--ink:#17251f;--muted:#718078;--line:#e4ebe6;--green:#176b4b;--green2:#23845d;--lime:#d9ed7c;--orange:#d58a36;--red:#c65c50;--nav:#132a22}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial;color:var(--ink)}
+.app{min-height:100vh;display:grid;grid-template-columns:245px 1fr}
+.sidebar{background:var(--nav);color:#edf5ef;padding:26px 17px;display:flex;flex-direction:column;gap:26px}
+.brand{display:flex;align-items:center;gap:11px;padding:0 8px}.logo{width:38px;height:38px;border-radius:12px;background:var(--lime);color:#1b3528;display:grid;place-items:center;font-weight:900;font-size:19px}.brand strong{font-size:16px;letter-spacing:1.4px}.brand small{display:block;color:#9bb4a7;font-size:10px;letter-spacing:1.6px;margin-top:3px}
+.navlabel{font-size:10px;color:#8da69a;letter-spacing:1.5px;padding:0 12px;margin-bottom:-14px}.nav a{display:flex;align-items:center;gap:12px;color:#c4d4cb;text-decoration:none;padding:12px;border-radius:10px;font-size:13px;margin:3px 0}.nav a.active,.nav a:hover{background:#254638;color:white}.nav .ico{width:19px;text-align:center;font-size:16px}.sidebottom{margin-top:auto;background:#1d3a2e;border:1px solid #345443;border-radius:13px;padding:14px;font-size:12px;color:#c7d8ce;line-height:1.5}.sidebottom b{color:#fff;display:block;margin-bottom:5px}
+main{padding:27px 32px 40px;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:25px}.eyebrow{font-size:10px;letter-spacing:1.7px;color:var(--green);font-weight:800}.topbar h1{font-size:25px;margin:5px 0 0;letter-spacing:-.7px}.topright{display:flex;align-items:center;gap:10px}.status{font-size:11px;color:var(--green);background:#e5f3eb;border:1px solid #cde7d7;border-radius:30px;padding:8px 12px}.avatar{width:35px;height:35px;border-radius:50%;background:#dce9df;display:grid;place-items:center;color:var(--green);font-weight:800}
+.notice{background:#fff9e9;border:1px solid #f0dfb7;color:#785b26;padding:10px 14px;border-radius:10px;font-size:11px;margin-bottom:18px;line-height:1.5}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}.toolbar p{margin:0;color:var(--muted);font-size:12px}.controls{display:flex;gap:8px;flex-wrap:wrap}select,input[type=date],button,.uploadlabel{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 12px;border-radius:9px;font:inherit;font-size:11px}button{cursor:pointer;font-weight:700}.primary{background:var(--green);border-color:var(--green);color:white}.primary:hover{background:var(--green2)}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:16px}.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 10px #173d2510}.metric{padding:16px}.metric-head{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.metric-icon{width:27px;height:27px;display:grid;place-items:center;border-radius:8px;background:#edf5ef;color:var(--green)}.metric strong{display:block;font-size:25px;margin:11px 0 4px;letter-spacing:-.7px}.metric small{font-size:10px;color:var(--muted)}.positive{color:var(--green)!important}.gridmain{display:grid;grid-template-columns:1.45fr 1fr;gap:15px;margin-bottom:15px}.panel{padding:17px;min-width:0}.panelhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:13px}.panel h2{font-size:14px;margin:0}.sub{font-size:10px;color:var(--muted);margin-top:5px}.tag{font-size:9px;padding:5px 8px;border-radius:20px;background:#edf5ef;color:var(--green);font-weight:700}
+.mapbox{height:300px;border-radius:11px;overflow:hidden;position:relative;background:#e7eee5;border:1px solid #d9e4d9}.mapbox svg{width:100%;height:100%;display:block}.maplegend{position:absolute;left:12px;bottom:12px;background:#ffffffeb;border:1px solid #dce5dd;border-radius:9px;padding:9px 11px;font-size:9px;display:grid;gap:6px}.dot{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:6px}.maptools{position:absolute;right:12px;top:12px;display:grid;gap:5px}.maptools button{padding:6px 9px;background:#fff;font-size:12px}
+.chartwrap{height:225px;position:relative}.chartwrap svg{width:100%;height:100%;overflow:visible}.chartlabels{display:flex;justify-content:space-between;font-size:9px;color:var(--muted);margin-top:-2px}.legend{display:flex;gap:14px;font-size:10px;color:var(--muted);margin-top:8px}.legend span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px}.legend span:last-child:before{background:var(--orange)}
+.bottomgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:15px}.table{width:100%;border-collapse:collapse;font-size:10px}.table th{text-align:left;color:var(--muted);font-weight:600;padding:10px 7px;border-bottom:1px solid var(--line)}.table td{padding:11px 7px;border-bottom:1px solid #edf1ee}.pill{padding:4px 7px;border-radius:20px;font-size:9px;font-weight:700}.high{background:#fbe9e6;color:#a74339}.medium{background:#fff3dc;color:#986a1f}.low{background:#e8f4ec;color:#27744e}.prediction{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:11px}.prediction:last-child{border:0}.prediction b{font-size:13px}.bar{height:6px;background:#edf1ee;border-radius:9px;margin-top:7px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green);border-radius:9px}
+.footer{text-align:center;color:#98a59d;font-size:9px;padding-top:22px}
+@media(max-width:1050px){.app{grid-template-columns:205px 1fr}.cards{grid-template-columns:repeat(2,1fr)}.gridmain,.bottomgrid{grid-template-columns:1fr}}
+@media(max-width:700px){.app{display:block}.sidebar{padding:14px;gap:12px}.brand{padding:0}.navlabel,.sidebottom{display:none}.nav{display:flex;overflow:auto}.nav a{white-space:nowrap;padding:9px;font-size:11px}.nav a .ico{display:none}main{padding:20px 14px}.topbar h1{font-size:21px}.status{display:none}.cards{gap:8px}.metric{padding:12px}.metric strong{font-size:21px}.mapbox{height:240px}}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">M</div><div><strong>MANGANAIQ</strong><small>MINING INTELLIGENCE</small></div></div>
+  <div class="navlabel">WORKSPACE</div>
+  <nav class="nav">
+    <a class="active" href="#overview"><span class="ico">▦</span>Overview</a>
+    <a href="#map"><span class="ico">⌖</span>Mining map</a>
+    <a href="#production"><span class="ico">▥</span>Production</a>
+    <a href="#predictions"><span class="ico">◈</span>AI insights</a>
+    <a href="#alerts"><span class="ico">⚑</span>Alerts</a>
+  </nav>
+  <div class="sidebottom"><b>Prototype workspace</b>Demo data is being used. Connect approved mine records and imagery before operational use.</div>
+</aside>
+<main id="overview">
+  <header class="topbar">
+    <div><div class="eyebrow">SMART MINING • GEOSPATIAL ANALYTICS</div><h1>Mining Intelligence Dashboard</h1></div>
+    <div class="topright"><span class="status">● Demo environment</span><div class="avatar">E</div></div>
+  </header>
+  <div class="notice"><b>Prototype notice:</b> This is an interactive sample dashboard. The map, figures, alerts and predictions below are illustrative demo content—not live satellite observations or verified mine measurements.</div>
+  <div class="toolbar">
+    <p>Site: <b>Demo Manganese Mine</b> &nbsp;·&nbsp; Last demo update: <span id="updated">Today</span></p>
+    <div class="controls">
+      <select id="imagery"><option value="Sentinel-2">Sentinel-2 imagery</option><option value="Landsat 8/9">Landsat 8/9 imagery</option></select>
+      <input type="date" id="date" value="2026-11-18" aria-label="Observation date">
+      <button class="primary" id="refresh">Refresh view</button>
+    </div>
+  </div>
+  <section class="cards">
+    <div class="card metric"><div class="metric-head">Production this month <span class="metric-icon">▥</span></div><strong id="productionValue">12,480 t</strong><small class="positive">Demo value · monthly total</small></div>
+    <div class="card metric"><div class="metric-head">Mapped mine blocks <span class="metric-icon">⌖</span></div><strong>08</strong><small>Illustrative GIS blocks</small></div>
+    <div class="card metric"><div class="metric-head">Change signals <span class="metric-icon">⌁</span></div><strong id="signalValue">06</strong><small>Sample signals for review</small></div>
+    <div class="card metric"><div class="metric-head">Review priority <span class="metric-icon">⚑</span></div><strong>03</strong><small>Sample high-priority locations</small></div>
+  </section>
+  <section class="gridmain">
+    <div class="panel" id="map">
+      <div class="panelhead"><div><h2>Geospatial mine view</h2><div class="sub">Illustrative mine blocks and review zones</div></div><span class="tag" id="mapSource">SENTINEL-2 VIEW</span></div>
+      <div class="mapbox">
+        <svg viewBox="0 0 760 360" role="img" aria-label="Illustrative mining site map with mine blocks">
+          <defs><pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#cbd8c9" stroke-width="1"/></pattern><linearGradient id="land" x2="1" y2="1"><stop stop-color="#dce9d8"/><stop offset="1" stop-color="#c6d9c5"/></linearGradient></defs>
+          <rect width="760" height="360" fill="url(#land)"/><rect width="760" height="360" fill="url(#grid)" opacity=".65"/>
+          <path d="M-20 250 Q110 200 210 245 T430 235 T790 180" fill="none" stroke="#a5c5bd" stroke-width="24" opacity=".65"/><path d="M-20 250 Q110 200 210 245 T430 235 T790 180" fill="none" stroke="#f8fbf7" stroke-width="2" stroke-dasharray="8 7"/>
+          <path d="M55 35 L220 22 265 115 145 165 45 120Z" fill="#9dbd91" stroke="#648a69" stroke-width="2"/><path d="M290 28 L450 45 430 145 300 130Z" fill="#d6b878" stroke="#aa8b4d" stroke-width="2"/><path d="M490 45 L690 30 715 145 560 165Z" fill="#9eb9a2" stroke="#648a69" stroke-width="2"/><path d="M75 205 L220 180 275 310 105 330Z" fill="#d8bd83" stroke="#aa8b4d" stroke-width="2"/><path d="M315 185 L470 170 510 300 350 325Z" fill="#b6a18a" stroke="#8d7964" stroke-width="2"/><path d="M555 205 L700 180 735 300 590 330Z" fill="#9fbd91" stroke="#648a69" stroke-width="2"/>
+          <g font-family="Arial" font-size="13" font-weight="700" fill="#294333"><text x="125" y="92">BLOCK A1</text><text x="342" y="90">BLOCK A2</text><text x="585" y="100">BLOCK B1</text><text x="140" y="270">BLOCK B2</text><text x="385" y="255">BLOCK C1</text><text x="625" y="260">BLOCK C2</text></g>
+          <g><circle cx="202" cy="132" r="10" fill="#c65c50" stroke="white" stroke-width="3"/><circle cx="202" cy="132" r="18" fill="none" stroke="#c65c50" opacity=".5" stroke-width="2"/><circle cx="455" cy="190" r="9" fill="#d58a36" stroke="white" stroke-width="3"/><circle cx="610" cy="150" r="8" fill="#176b4b" stroke="white" stroke-width="3"/></g>
+          <g font-family="Arial" font-size="10" fill="#496253"><text x="18" y="22">N ↑</text><text x="675" y="344">DEMO MAP • NOT TO SCALE</text></g>
+        </svg>
+        <div class="maptools"><button title="Zoom in" id="zoomIn">＋</button><button title="Zoom out" id="zoomOut">－</button></div>
+        <div class="maplegend"><span><i class="dot" style="background:#c65c50"></i>High review priority</span><span><i class="dot" style="background:#d58a36"></i>Medium priority</span><span><i class="dot" style="background:#176b4b"></i>Normal monitoring</span></div>
+      </div>
+      <div class="sub" style="margin-top:9px" id="imageryNote">Selected source: Sentinel-2 · Demo layer only. Real imagery is not connected.</div>
+    </div>
+    <div class="panel" id="production">
+      <div class="panelhead"><div><h2>Production trend</h2><div class="sub">Illustrative monthly production (tonnes)</div></div><span class="tag">DEMO DATA</span></div>
+      <div class="chartwrap">
+        <svg id="chart" viewBox="0 0 500 235" preserveAspectRatio="none" aria-label="Illustrative production line chart">
+          <g stroke="#e8eeea" stroke-width="1"><path d="M40 25H490M40 70H490M40 115H490M40 160H490M40 205H490"/></g>
+          <g fill="#84938a" font-size="10"><text x="3" y="28">16k</text><text x="3" y="73">12k</text><text x="9" y="118">8k</text><text x="9" y="163">4k</text><text x="17" y="208">0</text></g>
+          <path d="M45 115 L115 104 L185 124 L255 82 L325 91 L395 60 L475 72 L475 205 L45 205Z" fill="#dceee3" opacity=".8"/>
+          <path d="M45 115 L115 104 L185 124 L255 82 L325 91 L395 60 L475 72" fill="none" stroke="#176b4b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <g fill="#fff" stroke="#176b4b" stroke-width="3"><circle cx="45" cy="115" r="4"/><circle cx="115" cy="104" r="4"/><circle cx="185" cy="124" r="4"/><circle cx="255" cy="82" r="4"/><circle cx="325" cy="91" r="4"/><circle cx="395" cy="60" r="4"/><circle cx="475" cy="72" r="4"/></g>
+        </svg>
+      </div>
+      <div class="chartlabels" id="chartLabels"><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span></div>
+      <div class="legend"><span>Recorded production</span><span>Target / comparison</span></div>
+      <div class="sub" style="margin-top:13px">For a real chart, upload a CSV containing date and production_tonnes columns.</div>
+    </div>
+  </section>
+  <section class="bottomgrid">
+    <div class="panel" id="alerts">
+      <div class="panelhead"><div><h2>Inspection alerts</h2><div class="sub">Example change signals requiring human verification</div></div><span class="tag">3 OPEN</span></div>
+      <table class="table"><thead><tr><th>Location</th><th>Signal</th><th>Priority</th><th>Status</th></tr></thead><tbody id="alertRows">
+        <tr><td>Block A1</td><td>Surface change</td><td><span class="pill high">High</span></td><td>Review</td></tr>
+        <tr><td>Block C1</td><td>Route variation</td><td><span class="pill medium">Medium</span></td><td>Review</td></tr>
+        <tr><td>Block B1</td><td>Vegetation change</td><td><span class="pill low">Low</span></td><td>Monitor</td></tr>
+      </tbody></table>
+    </div>
+    <div class="panel" id="predictions">
+      <div class="panelhead"><div><h2>AI insights</h2><div class="sub">Sample model output — not a validated forecast</div></div><span class="tag">EXAMPLE</span></div>
+      <div class="prediction"><div><b>Next shift production</b><div class="sub">Illustrative estimate</div></div><b>420 t</b></div>
+      <div class="prediction"><div><b>Production variance</b><div class="sub">Compared with sample target</div></div><b style="color:#d58a36">−4.5%</b></div>
+      <div class="prediction"><div><b>Model confidence</b><div class="sub">Placeholder until model validation</div></div><b>—</b></div>
+      <div class="bar"><i style="width:58%"></i></div>
+      <div class="sub" style="margin-top:8px">Connect a trained model and real shift logs before using predictions for decisions.</div>
+    </div>
+  </section>
+  <section class="panel" style="margin-top:15px">
+    <div class="panelhead"><div><h2>Import sample production data</h2><div class="sub">Upload a CSV with columns: date, production_tonnes. This demo reads the file locally in your browser.</div></div><span class="tag">CSV IMPORT</span></div>
+    <div class="controls"><label class="uploadlabel" for="csvFile">Choose CSV file</label><input id="csvFile" type="file" accept=".csv,text/csv" style="max-width:220px"><button id="loadSample">Load sample CSV</button><span id="csvStatus" class="sub" style="align-self:center">No file loaded</span></div>
+  </section>
+  <div class="footer">MANGANAIQ • Smart mining decision-support prototype • Human review required</div>
+</main>
+</div>
+<script>
+const imagery=document.getElementById('imagery'), note=document.getElementById('imageryNote'), source=document.getElementById('mapSource');
+imagery.addEventListener('change',()=>{source.textContent=imagery.value.toUpperCase()+' VIEW';note.textContent='Selected source: '+imagery.value+' · Demo layer only. Real imagery is not connected.';});
+document.getElementById('refresh').addEventListener('click',()=>{document.getElementById('updated').textContent='Just refreshed';note.textContent='View refreshed for '+imagery.value+' · This remains a demonstration layer.';});
+let zoom=1;const mapSvg=document.querySelector('.mapbox svg');document.getElementById('zoomIn').onclick=()=>{zoom=Math.min(zoom+0.12,1.6);mapSvg.style.transform=`scale(${zoom})`};document.getElementById('zoomOut').onclick=()=>{zoom=Math.max(zoom-0.12,1);mapSvg.style.transform=`scale(${zoom})`};
+function loadCSV(text){const lines=text.trim().split(/\r?\n/);if(lines.length<2)throw Error('CSV needs a header and at least one data row.');const headers=lines[0].split(',').map(x=>x.trim().toLowerCase());const idx=headers.indexOf('production_tonnes');if(idx<0)throw Error('Missing production_tonnes column.');let total=0,count=0;const rows=[];const di=headers.indexOf('date');for(const line of lines.slice(1)){const cells=line.split(',');const n=Number(cells[idx]);if(Number.isFinite(n)){total+=n;count++;rows.push({d:di>=0?(cells[di]||'').trim():'#'+count,v:n});}}if(!count)throw Error('No valid production values found.');document.getElementById('productionValue').textContent=Math.round(total).toLocaleString('en-IN')+' t';document.getElementById('csvStatus').textContent=`Loaded ${count} rows · total ${Math.round(total).toLocaleString('en-IN')} tonnes`;document.getElementById('updated').textContent='CSV imported';drawChart(rows);}
+document.getElementById('csvFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{loadCSV(await f.text())}catch(err){document.getElementById('csvStatus').textContent=err.message}});
+document.getElementById('loadSample').onclick=()=>{try{loadCSV('date,production_tonnes\n2026-11-01,390\n2026-11-02,410\n2026-11-03,425\n2026-11-04,405\n2026-11-05,430')}catch(e){}};
+
+function drawChart(rows){const max=Math.max(...rows.map(r=>r.v),1);const top=Math.ceil(max*1.1/4)*4;const fmt=v=>v>=1000?(v/1000).toFixed(1).replace('.0','')+'k':String(Math.round(v));
+const x=i=>rows.length>1?45+i*430/(rows.length-1):260,y=v=>205-v/top*180;
+const pts=rows.map((r,i)=>x(i).toFixed(1)+' '+y(r.v).toFixed(1));
+let g='<g stroke="#e8eeea" stroke-width="1"><path d="M40 25H490M40 70H490M40 115H490M40 160H490M40 205H490"/></g><g fill="#84938a" font-size="10">';
+for(let k=0;k<=4;k++)g+='<text x="3" y="'+(208-k*45)+'">'+fmt(top*k/4)+'</text>';
+g+='</g><path d="M'+pts.join(' L')+' L'+x(rows.length-1)+' 205 L'+x(0)+' 205Z" fill="#dceee3" opacity=".8"/><path d="M'+pts.join(' L')+'" fill="none" stroke="#176b4b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g fill="#fff" stroke="#176b4b" stroke-width="3">'+rows.map((r,i)=>'<circle cx="'+x(i)+'" cy="'+y(r.v)+'" r="4"/>').join('')+'</g>';
+document.getElementById('chart').innerHTML=g;
+const n=Math.min(rows.length,7),ls=[];for(let k=0;k<n;k++)ls.push(rows[Math.round(k*(rows.length-1)/Math.max(n-1,1))].d);
+document.getElementById('chartLabels').innerHTML=ls.map(l=>'<span>'+l.replace(/[<>&]/g,'')+'</span>').join('');}
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.nav a').forEach(b=>b.classList.remove('active'));a.classList.add('active');}));
+</script>
+</body>
+</html>
